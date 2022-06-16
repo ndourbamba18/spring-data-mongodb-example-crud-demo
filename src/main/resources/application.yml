@@ -1,16 +1,32 @@
 
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
 spring:
+  boot:
+    admin:
+      context-path: /admin-server
+      client:
+        url: [ http://localhost:8080/admin-server ]
+  application:
+    name: spring-data-mongodb
   data:
     mongodb:
       authentication-database: admin
       port: 27017
       host: localhost
       database: ProductDB
-  application:
-    name: spring-data-mongoDB
-
   banner:
     charset: UTF-8
-
+Code language: YAML (yaml)
 
 

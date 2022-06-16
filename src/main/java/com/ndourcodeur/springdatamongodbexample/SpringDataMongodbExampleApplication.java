@@ -2,6 +2,7 @@ package com.ndourcodeur.springdatamongodbexample;
 
 import com.ndourcodeur.springdatamongodbexample.entity.Product;
 import com.ndourcodeur.springdatamongodbexample.repository.ProductRepository;
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,8 +13,9 @@ import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import java.util.Date;
 import java.util.List;
 
-@SpringBootApplication
+@EnableAdminServer
 @EnableMongoAuditing
+@SpringBootApplication
 public class SpringDataMongodbExampleApplication {
 
 	@Autowired
@@ -32,7 +34,7 @@ public class SpringDataMongodbExampleApplication {
 	 * @param productRepository
 	 * @return
 	 */
-	@Bean
+	/*@Bean
 	CommandLineRunner commandLineRunner(ProductRepository productRepository){
 		return args -> {
 			// Save one product by one
@@ -47,6 +49,6 @@ public class SpringDataMongodbExampleApplication {
 			productRepository.saveAll(List.of(p1, p2, p3));
 			productRepository.findAll().forEach(product -> {System.out.println(product.getName());});
 		};
-	}
+	}*/
 
 }
