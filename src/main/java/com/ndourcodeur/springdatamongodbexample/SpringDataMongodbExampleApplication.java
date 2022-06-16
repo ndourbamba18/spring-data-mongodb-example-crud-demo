@@ -39,7 +39,6 @@ public class SpringDataMongodbExampleApplication {
 			productRepository.save(new Product(null, "Hp laptop", 1200.00, true, "The Description", new Date(), new Date()));
 			productRepository.save(new Product(null, "Acer laptop", 1000.00, true, "The Description", new Date(), new Date()));
 			productRepository.save(new Product(null, "Lenovo", 890.00, true, "The Description", new Date(), new Date()));
-
 			// Save all products together
 			Product p1 = new Product(null, "MacBook Pro", 1500.00, true, "The description", new Date(), new Date());
 			Product p2 = new Product(null, "Techno Camon 18", 100.85, true, "The description", new Date(), new Date());

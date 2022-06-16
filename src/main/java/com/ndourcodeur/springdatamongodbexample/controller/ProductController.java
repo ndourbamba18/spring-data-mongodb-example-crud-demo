@@ -37,7 +37,7 @@ public class ProductController {
         if (list.isEmpty()) {
             return new ResponseEntity(new Message("No Product in the database."), HttpStatus.BAD_REQUEST);
         }
-        list = list.stream().sorted(Comparator.comparing(Product::get_id)
+        list = list.stream().sorted(Comparator.comparing(Product::getId)
                 .reversed()).collect(Collectors.toList());
         logger.info("Get all products.");
         return new ResponseEntity<>(list, HttpStatus.OK);
@@ -51,7 +51,7 @@ public class ProductController {
      * @return
      */
     @GetMapping(path = "/{productId}")
-    public ResponseEntity<?> getProductById(@PathVariable(value = "productId") String productId) {
+    public ResponseEntity<?> getProductById(@PathVariable(value = "productId") Long productId) {
         if (!productRepository.existsById(productId)){
             return new ResponseEntity<>(new Message("Product does not exist with id:"+ productId), HttpStatus.BAD_REQUEST);
         }
@@ -99,13 +99,13 @@ public class ProductController {
      * @return
      */
     @PutMapping(path = "/{productId}")
-    public ResponseEntity<Product> updateProduct(@PathVariable(value = "productId") String productId, @Valid @RequestBody Product product) {
+    public ResponseEntity<Product> updateProduct(@PathVariable(value = "productId") Long productId, @Valid @RequestBody Product product) {
         if (!productRepository.existsById(productId)){
             return new ResponseEntity(new Message("Product does not exist with id:"+ productId+"!"), HttpStatus.BAD_REQUEST);
         }
-        /*if (productRepository.existsProductByName(product.getName()) && productRepository.findProductByName(product.getName()).get_id() != productId){
+        if (productRepository.existsProductByName(product.getName()) && productRepository.findProductByName(product.getName()).getId() != productId){
             return new ResponseEntity(new Message("Error: Name of Product already exist."), HttpStatus.BAD_REQUEST);
-        }*/
+        }
         Product editProduct = productRepository.save(product);
         logger.info("Update product with put method by id: {}", productId);
         return new ResponseEntity<>(editProduct, HttpStatus.OK);
@@ -120,7 +120,7 @@ public class ProductController {
      * @return
      */
     @PatchMapping(path = "/{productId}")
-    public ResponseEntity<Product> updateProductByOneField(@PathVariable(value = "productId") String productId, @Valid @RequestBody Product product) {
+    public ResponseEntity<Product> updateProductByOneField(@PathVariable(value = "productId") Long productId, @Valid @RequestBody Product product) {
         if (!productRepository.existsById(productId)){
             return new ResponseEntity(new Message("Product does not exist with id:"+ productId+"!"), HttpStatus.BAD_REQUEST);
         }
@@ -137,7 +137,7 @@ public class ProductController {
      * @return
      */
     @DeleteMapping(path = "/{productId}")
-    public ResponseEntity<?> deleteProduct(@PathVariable String productId){
+    public ResponseEntity<?> deleteProduct(@PathVariable Long productId){
         if (!productRepository.existsById(productId)){
             return new ResponseEntity(new Message("Product does not exist with id:"+ productId+"!"), HttpStatus.BAD_REQUEST);
         }
@@ -155,7 +155,7 @@ public class ProductController {
      * @return
      */
     @DeleteMapping(path = "/deleteProductById/{productId}")
-    public ResponseEntity<?> deleteProductById(@PathVariable(value = "productId") String productId){
+    public ResponseEntity<?> deleteProductById(@PathVariable(value = "productId") Long productId){
         if (!productRepository.existsById(productId)){
             return new ResponseEntity(new Message("Product does not exist with id:"+ productId+"!"), HttpStatus.BAD_REQUEST);
         }

@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-@Document(collection = "Products")
+@Document(collection = "Product_Collection")
 @JsonIgnoreProperties(
         value = {"createdAt", "updatedAt"},
         allowGetters = true
@@ -21,7 +21,7 @@ import java.util.Objects;
 public class Product implements Serializable {
 
     @Id
-    private String _id;
+    private Long id;
 
     @Indexed(unique = true)
     @NotBlank(message = "This field is required.")
@@ -48,9 +48,9 @@ public class Product implements Serializable {
 
     public Product() {}
 
-    public Product(String _id, String name, double price, boolean isInStock, String description,
+    public Product(Long id, String name, double price, boolean isInStock, String description,
                    Date createdAt, Date updatedAt) {
-        this._id = _id;
+        this.id = id;
         this.name = name;
         this.price = price;
         this.isInStock = isInStock;
@@ -59,12 +59,12 @@ public class Product implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public String get_id() {
-        return _id;
+    public long getId() {
+        return id;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -120,20 +120,20 @@ public class Product implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Double.compare(product.price, price) == 0 && isInStock == product.isInStock && _id.equals(product._id)
+        return Double.compare(product.price, price) == 0 && isInStock == product.isInStock && id.equals(product.id)
                 && Objects.equals(name, product.name) && Objects.equals(description, product.description)
                 && Objects.equals(createdAt, product.createdAt) && Objects.equals(updatedAt, product.updatedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(_id, name, price, isInStock, description, createdAt, updatedAt);
+        return Objects.hash(id, name, price, isInStock, description, createdAt, updatedAt);
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "_id='" + _id + '\'' +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", isInStock=" + isInStock +
