@@ -17,6 +17,13 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+
+		<!-- ADD DEPENDENCY -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<!-- END ADD DEPENDENCY -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>

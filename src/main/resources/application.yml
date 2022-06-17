@@ -7,10 +7,17 @@ spring:
       host: localhost
       database: ProductDB
   application:
-    name: spring-data-mongoDB
+    name: spring-mongodb-with-actuator
 
   banner:
     charset: UTF-8
+
+# Configuration of spring actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 
 
